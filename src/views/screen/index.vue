@@ -1,5 +1,5 @@
 <template>
-  <div style="visibility: hidden;"></div>
+  <div style="visibility: hidden"></div>
   <div v-if="!isDestroy" id="screen_box" class="screen_box">
     <div class="layout_top">
       <Decoration5 :duration="2" class="top_bg" />
@@ -13,7 +13,9 @@
           </Decoration7>
           <div class="echartsOne" id="echartsOne"></div>
         </BorderBox1>
-        <Decoration1 style="width: 200px; height: 50px; margin: 20px 0; margin-top: 0" />
+        <Decoration1
+          style="width: 200px; height: 50px; margin: 20px 0; margin-top: 0"
+        />
         <BorderBox1 class="data_box">
           <Decoration7 class="data_box_title_box">
             &nbsp;&nbsp;数据监控大图2&nbsp;&nbsp;
@@ -37,14 +39,18 @@
           </Decoration7>
           <div class="echartsFore" id="echartsFore"></div>
         </BorderBox1>
-        <Decoration1 style="width: 200px; height: 50px; margin: 20px 0; margin-top: 0" />
+        <Decoration1
+          style="width: 200px; height: 50px; margin: 20px 0; margin-top: 0"
+        />
         <BorderBox1 class="data_box">
           <Decoration7 class="data_box_title_box">
             &nbsp;&nbsp;数据监控大图4&nbsp;&nbsp;
           </Decoration7>
           <div class="echartsFive" id="echartsFive"></div>
         </BorderBox1>
-        <Decoration1 style="width: 200px; height: 50px; margin: 20px 0; margin-top: 0" />
+        <Decoration1
+          style="width: 200px; height: 50px; margin: 20px 0; margin-top: 0"
+        />
         <BorderBox1 class="data_box">
           <Decoration7 class="data_box_title_box">
             &nbsp;&nbsp;数据监控大图5&nbsp;&nbsp;
@@ -72,7 +78,7 @@ defineOptions({
   name: 'screen',
 });
 
-const isDestroy = ref<boolean>(false)
+const isDestroy = ref<boolean>(false);
 
 const echartOneInit = () => {
   //获取DOM元素并初始化
@@ -1256,22 +1262,18 @@ onMounted(() => {
 });
 
 onBeforeRouteLeave((to, from, next) => {
-  console.log(to, from, '===============')
-  isDestroy.value = true
+  console.log(to, from, '===============');
+  isDestroy.value = true;
   // const dom = document.querySelector('#screen_box')
   // if (dom) {
   //   dom.innerHTML = ''
   // }
-  next()
-
-})
+  next();
+});
 
 onBeforeUnmount(() => {
   // autofit.off()
 });
-
-
-
 </script>
 
 <style lang="scss" scoped>
