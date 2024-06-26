@@ -1,5 +1,6 @@
 <template>
-  <div id="screen_box" class="screen_box">
+  <div style="visibility: hidden;"></div>
+  <div v-if="!isDestroy" id="screen_box" class="screen_box">
     <div class="layout_top">
       <Decoration5 :duration="2" class="top_bg" />
       <span class="title">O2O云实时数据监控平台</span>
@@ -12,9 +13,7 @@
           </Decoration7>
           <div class="echartsOne" id="echartsOne"></div>
         </BorderBox1>
-        <Decoration1
-          style="width: 200px; height: 50px; margin: 20px 0; margin-top: 0"
-        />
+        <Decoration1 style="width: 200px; height: 50px; margin: 20px 0; margin-top: 0" />
         <BorderBox1 class="data_box">
           <Decoration7 class="data_box_title_box">
             &nbsp;&nbsp;数据监控大图2&nbsp;&nbsp;
@@ -23,7 +22,10 @@
         </BorderBox1>
       </div>
       <div class="box_content content_center">
-        <BorderBox10 class="content_center_top_box">BorderBox8</BorderBox10>
+        <BorderBox10 class="content_center_top_box">
+          <!-- <button @click="routeFnc.push('/')">123123</button> -->
+          <img src="./ditu.jpg" />
+        </BorderBox10>
         <div class="content_center_bottom_box">
           <div class="echartsTwo" id="echartsTwo"></div>
         </div>
@@ -35,18 +37,14 @@
           </Decoration7>
           <div class="echartsFore" id="echartsFore"></div>
         </BorderBox1>
-        <Decoration1
-          style="width: 200px; height: 50px; margin: 20px 0; margin-top: 0"
-        />
+        <Decoration1 style="width: 200px; height: 50px; margin: 20px 0; margin-top: 0" />
         <BorderBox1 class="data_box">
           <Decoration7 class="data_box_title_box">
             &nbsp;&nbsp;数据监控大图4&nbsp;&nbsp;
           </Decoration7>
           <div class="echartsFive" id="echartsFive"></div>
         </BorderBox1>
-        <Decoration1
-          style="width: 200px; height: 50px; margin: 20px 0; margin-top: 0"
-        />
+        <Decoration1 style="width: 200px; height: 50px; margin: 20px 0; margin-top: 0" />
         <BorderBox1 class="data_box">
           <Decoration7 class="data_box_title_box">
             &nbsp;&nbsp;数据监控大图5&nbsp;&nbsp;
@@ -60,7 +58,8 @@
 
 <script lang="ts" setup>
 import * as echarts from 'echarts';
-import { onMounted, nextTick, onBeforeUnmount } from 'vue';
+import { onMounted, nextTick, onBeforeUnmount, ref } from 'vue';
+import { onBeforeRouteLeave } from 'vue-router';
 import autofit from 'autofit.js';
 import {
   Decoration5,
@@ -72,6 +71,8 @@ import {
 defineOptions({
   name: 'screen',
 });
+
+const isDestroy = ref<boolean>(false)
 
 const echartOneInit = () => {
   //获取DOM元素并初始化
@@ -1254,9 +1255,23 @@ onMounted(() => {
   });
 });
 
+onBeforeRouteLeave((to, from, next) => {
+  console.log(to, from, '===============')
+  isDestroy.value = true
+  // const dom = document.querySelector('#screen_box')
+  // if (dom) {
+  //   dom.innerHTML = ''
+  // }
+  next()
+
+})
+
 onBeforeUnmount(() => {
   // autofit.off()
 });
+
+
+
 </script>
 
 <style lang="scss" scoped>
